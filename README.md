@@ -37,26 +37,26 @@ The project is implemented using python 3.9 and the [starlette](https://www.star
 #### 1) Return historical price data (GET /nifty/stocks/{symbol}/?year={year})
 
 Implement the `price_data` function in `__main__.py` to return **open**, **close**, **high** and **low** prices for the requested symbol as JSON records. 
-* DONE - The data is loaded from the file `data/nifty50_all.csv` and saved in `data/nifty50_all.csv` at shutdown (look for startup and shutdown event in code)
-* DONE - The endpoint returns one record for each row of data in the file as List[StockPrices]. Test case `test_price_data` (all parameterized ones)
-* DONE - Returned data is sorted by date, most recent data first. Test case `test_price_data_sorted_by_date_desc`
-* DONE - If an invalid symbol is requested, the endpoint returns 400(BAD_REQUEST) with an appropriate error message. Test case `test_price_data` case 3
-* DONE - The solution allows the dataset to be updated (e.g. new data added) without restarting the app - Test case `test_add_price_data_and_check_count_of_record`
+* [x] DONE - The data is loaded from the file `data/nifty50_all.csv` and saved in `data/nifty50_all.csv` at shutdown (look for startup and shutdown event in code)
+* [x] DONE - The endpoint returns one record for each row of data in the file as List[StockPrices]. Test case `test_price_data` (all parameterized ones)
+* [x] DONE - Returned data is sorted by date, most recent data first. Test case `test_price_data_sorted_by_date_desc`
+* [x] DONE - If an invalid symbol is requested, the endpoint returns 400(BAD_REQUEST) with an appropriate error message. Test case `test_price_data` case 3
+* [x] DONE - The solution allows the dataset to be updated (e.g. new data added) without restarting the app - Test case `test_add_price_data_and_check_count_of_record`
 
 #### 2) Allow the price data to be filtered by year
 
-* DONE - Only returns rows for the specified year (and symbol). Testcase `test_price_data` case 4
-* DONE - When there is no data for the specified year, an empty list is returne. Testcase `test_price_data` case 5 
-* DONE - When year is invalid, the endpoint returns 400 and an appropriate error message. Testcase `test_price_data` case 6 
+* [x] DONE - Only returns rows for the specified year (and symbol). Testcase `test_price_data` case 4
+* [x] DONE - When there is no data for the specified year, an empty list is returne. Testcase `test_price_data` case 5 
+* [x] DONE - When year is invalid, the endpoint returns 400 and an appropriate error message. Testcase `test_price_data` case 6 
 
 
 #### 3) Extend the endpoint to allow new data to be added
 
-* DONE - The endpoint only accepts (list of) JSON and allows prices for one or more days to be added to the dataset. Test case `test_add_price_data_multiple_and_check_count_of_record` covers multiple dates and `test_add_price_data_and_check_count_of_record` covers single date
-* DONE - It only allows new data to be added, it does not allows an existing value to be updated. Test case `test_add_price_data` case 8 covers that 
-* DONE - Any subset of **OPEN**, **CLOSE**, **HIGH**, **LOW** is accepted - no other price-types is accepted. Test case `test_add_price_data` case 7 covers that 
-* DONE - Updates are validated as follows:
-  * DONE - Dates only in the format DD/MM/YYYY. Test case `test_add_price_data` case 4
-  * DONE - Prices are within 1 standard deviation of the prior 50 values for that combination of symbol and price-type. Test case `test_add_price_data` case 2 
-* DONE - New data is persisted and is immediately accessible via GET. Test case `test_add_price_data_and_check_count_of_record` covers that
+* [x] DONE - The endpoint only accepts (list of) JSON and allows prices for one or more days to be added to the dataset. Test case `test_add_price_data_multiple_and_check_count_of_record` covers multiple dates and `test_add_price_data_and_check_count_of_record` covers single date
+* [x] DONE - It only allows new data to be added, it does not allows an existing value to be updated. Test case `test_add_price_data` case 8 covers that 
+* [x] DONE - Any subset of **OPEN**, **CLOSE**, **HIGH**, **LOW** is accepted - no other price-types is accepted. Test case `test_add_price_data` case 7 covers that 
+* [x] DONE - Updates are validated as follows:
+  * [x] DONE - Dates only in the format DD/MM/YYYY. Test case `test_add_price_data` case 4
+  * [x] DONE - Prices are within 1 standard deviation of the prior 50 values for that combination of symbol and price-type. Test case `test_add_price_data` case 2 
+* [x] DONE - New data is persisted and is immediately accessible via GET. Test case `test_add_price_data_and_check_count_of_record` covers that
 
